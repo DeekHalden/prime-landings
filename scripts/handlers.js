@@ -28,15 +28,14 @@ export class MultiSelect {
 
   initListeners() {
     const active = this.qs.currentAnswers;
-    console.log(active);
-    console.log(this.qs.current);
+
     const elements = [...document.getElementsByClassName(this.className)];
     elements.forEach((element) => {
       if (active && active.includes(element.dataset.id)) {
         element.classList.add("active");
       }
       element.addEventListener("click", () => {
-        console.log("click");
+
         element.classList.toggle("active");
         const selected = [...document.getElementsByClassName("active")].map(
           (el) => el.dataset.id
@@ -53,12 +52,21 @@ export class Input {
     this.qs = qs;
   }
 
-  initListeners() {
+  initListeners(context) {
     const text = this.qs.currentAnswers;
     const element = document.querySelector(`.${this.className}`);
     element.value = text ?? "";
     element.addEventListener("input", (e) => {
       this.qs.setAnswer(e.target.value);
+    });
+
+    element.addEventListener("keyup", async (e) => {
+      if (e.code !== 'Enter') {
+        return
+      }
+      const current = await this.qs.next();
+      await context.render(current)
+      context.showNext(current)
     });
   }
 }

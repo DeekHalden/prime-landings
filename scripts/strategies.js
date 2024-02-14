@@ -113,7 +113,7 @@ export class HTMLStrategy {
   render(data, context) {
     const renderContext = document.querySelector(".step");
     const { variants } = data;
-    console.log(variants);
+
     const contentToJson = decodeURIComponent(JSON.parse(variants).content);
     renderContext.innerHTML = `<div class="html">${contentToJson}</div>`;
     this.eventManager.initListeners(context);
@@ -143,11 +143,11 @@ export class InputStrategy extends StrategyBuilder {
     super(eventManager);
     this.name = "input";
   }
-  render(data) {
-    const context = document.querySelector(".step");
+  render(data, context) {
+    const renderContext = document.querySelector(".step");
     const { question_text, description } = data;
-    console.log(data);
-    context.innerHTML = `
+
+    renderContext.innerHTML = `
         ${this.renderTitle(question_text)} 
         ${this.renderSubtitle(description)}
         <div class="actions actions--vertical">
@@ -162,7 +162,7 @@ export class InputStrategy extends StrategyBuilder {
           </div>
         </div>
     `;
-    this.eventManager.initListeners();
+    this.eventManager.initListeners(context);
   }
 }
 

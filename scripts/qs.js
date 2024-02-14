@@ -17,8 +17,6 @@ export class Questionnaire {
 
   async next() {
     return new Promise((resolve, reject) => {
-      console.log('here')
-      console.log(this.currentStep >= this.questions.length)
       if (this.currentStep >= this.questions.length) {
         reject();
         return;
