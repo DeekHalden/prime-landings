@@ -3,15 +3,22 @@ export class Questionnaire {
     this.currentStep = 0;
     this.questions = questions;
     this.answers = {};
+    this.button = document.getElementById("next");
   }
 
   setAnswer(answer) {
     this.answers[this.current.id] = answer;
-    console.log(this.answers);
+    if (this.answers[this.current.id] && this.answers[this.current.id].length) {
+      this.button.classList.remove("disabled");
+    } else {
+      this.button.classList.add("disabled");
+    }
   }
 
   async next() {
     return new Promise((resolve, reject) => {
+      console.log('here')
+      console.log(this.currentStep >= this.questions.length)
       if (this.currentStep >= this.questions.length) {
         reject();
         return;
