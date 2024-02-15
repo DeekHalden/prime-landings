@@ -2,6 +2,17 @@
 <script>
   var data = [
     {
+      id: 1,
+      question_text: "<b>How old are you?</b>",
+      description:
+        "Eating is one of the <b>ways</b> to usually deal with my emotions",
+      type: "single",
+      next_btn: true,
+      prev_btn: false,
+      variants:
+        '[\n  {\n    "title": "18-29 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 1\n  },\n  {\n    "title": "30-39 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 2\n  },\n  {\n    "title": "40-49 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 3\n  },\n  {\n    "title": "50-59 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 4\n  },\n  {\n    "title": "60-80 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 5\n  }\n]\n',
+    },
+    {
       id: 7,
       question_text: "What's your height?",
       description:
@@ -43,17 +54,6 @@
         '[\n  {\n    "title": "variant A",\n\n    "id": 1\n  },\n  {\n    "title": "variant B",\n\n    "id": 2\n  },\n  {\n    "title": "variant C",\n\n    "id": 3\n  },\n  {\n    "title": "variant D",\n\n    "id": 4\n  },\n  {\n    "title": "variant E",\n\n    "id": 5\n  }\n]',
     },
     {
-      id: 1,
-      question_text: "<b>How old are you?</b>",
-      description:
-        "Eating is one of the <b>ways</b> to usually deal with my emotions",
-      type: "single",
-      next_btn: true,
-      prev_btn: false,
-      variants:
-        '[\n  {\n    "title": "18-29 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 1\n  },\n  {\n    "title": "30-39 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 2\n  },\n  {\n    "title": "40-49 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 3\n  },\n  {\n    "title": "50-59 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 4\n  },\n  {\n    "title": "60-80 years",\n    "image": "https://random.imagecdn.app/500/500",\n    "id": 5\n  }\n]\n',
-    },
-    {
       id: 3,
       question_text: "<b>What is your gender?</b>",
       description:
@@ -63,33 +63,6 @@
       prev_btn: false,
       variants:
         '[\n  {\n    "title": "Woman",\n\n    "id": 1\n  },\n  {\n    "title": "Man",\n\n    "id": 2\n  },\n  {\n    "title": "Non-binary",\n\n    "id": 3\n  },\n  {\n    "title": "Prefer not to say",\n\n    "id": 4\n  }\n]',
-    },
-    {
-      id: 5,
-      question_text: "Simple hello world title",
-      description: "",
-      type: "title",
-      next_btn: true,
-      prev_btn: true,
-      variants: "[]",
-    },
-    {
-      id: 6,
-      question_text: "",
-      description: "Simple hello world description",
-      type: "description",
-      next_btn: true,
-      prev_btn: true,
-      variants: "[]",
-    },
-    {
-      id: 8,
-      question_text: "Quote title",
-      description: "Quote body",
-      type: "quote",
-      next_btn: true,
-      prev_btn: true,
-      variants: "[]",
     },
     {
       id: 10,
@@ -106,20 +79,90 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Prime landing" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/prime-landings/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/prime-landings/apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/prime-landings/apple-touch-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/prime-landings/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/prime-landings/apple-touch-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/prime-landings/apple-touch-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/prime-landings/apple-touch-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/prime-landings/apple-touch-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/prime-landings/apple-touch-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/prime-landings/apple-touch-icon-180x180.png"
+    />
     <meta name="generator" content="Astro v4.3.5" />
     <title>Welcome to Astro.</title>
-    <link rel="stylesheet" href="/prime-landings/index.C19xxzos.css" />
+    <link rel="stylesheet" href="/prime-landings/_astro/index.0rGdXleu.css" />
   </head>
   <body>
     <div class="content" data-astro-cid-j7pv25f6>
       <div class="step"></div>
-      <div class="actions" data-astro-cid-j7pv25f6>
-        <button class="button" id="prev" data-astro-cid-j7pv25f6>Back</button>
+      <div class="footer" data-astro-cid-j7pv25f6>
+        <button class="button" id="prev" data-astro-cid-j7pv25f6>
+          <svg
+            width="8"
+            height="12"
+            viewBox="0 0 8 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            data-astro-cid-j7pv25f6
+          >
+            <path
+              d="M0 10.58L4.58 6L0 1.41L1.41 0L7.41 6L1.41 12L0 10.58Z"
+              fill="currentColor"
+              data-astro-cid-j7pv25f6
+            ></path></svg
+          >Back
+        </button>
         <button class="button primary" id="next" data-astro-cid-j7pv25f6>
           Next
+          <svg
+            width="8"
+            height="12"
+            viewBox="0 0 8 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            data-astro-cid-j7pv25f6
+          >
+            <path
+              d="M0 10.58L4.58 6L0 1.41L1.41 0L7.41 6L1.41 12L0 10.58Z"
+              fill="currentColor"
+              data-astro-cid-j7pv25f6
+            ></path>
+          </svg>
         </button>
       </div>
     </div>

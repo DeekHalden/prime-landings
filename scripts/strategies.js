@@ -71,7 +71,7 @@ export class MultiStrategy extends StrategyBuilder {
       .map((variant) => {
         return `
           <button
-              class="button select multi"
+              class="button select multi ${variant.image ? 'imaged' : ''}"
               id="variant-${variant.id}"
               data-id=${variant.id}
           >
@@ -92,7 +92,7 @@ export class MultiStrategy extends StrategyBuilder {
     const context = document.querySelector(".step");
     const { question_text, variants, description } = data;
     const variantsToJson = JSON.parse(variants);
-
+    
     context.innerHTML = `
         ${this.renderTitle(question_text)}
         ${this.renderSubtitle(description)}
@@ -152,13 +152,15 @@ export class InputStrategy extends StrategyBuilder {
         ${this.renderSubtitle(description)}
         <div class="actions actions--vertical">
           <div class="input-wrapper">
+          <label>Your height</label>
+            
+          
           <input
           autocomplete="off"
           class="input-wrapper__input"
           required
           />
-          <label>Your height</label>
-            <div class="input-wrapper__note">cm</div>
+          <div class="input-wrapper__note">cm</div>
           </div>
         </div>
     `;
