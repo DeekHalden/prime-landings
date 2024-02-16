@@ -4,6 +4,58 @@ export class Questionnaire {
     this.questions = questions;
     this.answers = {};
     this.button = document.getElementById("next");
+    this.progressElement = document.getElementById("progress");
+    this.initHandler();
+    this.progressElement.style.setProperty(
+      "--progress-fill-width",
+      this.getWidth(0)
+    );
+
+    this.progressElements = [...this.progressElement.querySelectorAll("span")];
+    this.progressElements.forEach((element, index) => {
+      if (!index) {
+        element.style.setProperty('--progress-color', 'var(--progress-color-fill)')
+      }
+    })
+  }
+
+  getElementAbsoluteLeft(element, width) {
+    const elementLeft = element.getBoundingClientRect();
+    console.log(elementLeft);
+  }
+
+  getWidth(value) {
+    const position = value + 1
+    return `${((position) * 100) / this.questions.length}%`;
+  }
+
+  initHandler() {
+    const handler = {
+      set: (obj, prop, value) => {
+        const width = this.getWidth(value);
+        this.progressElement.style.setProperty(
+          "--progress-fill-width",
+          width
+        );
+
+        
+        // const parentWidth = 0;
+        this.progressElements.forEach((element, index) => {
+          if (index <= value / 1.5) {
+            element.style.setProperty('--progress-color', 'var(--progress-color-fill)')
+          }  
+        });
+
+        return Reflect.set(obj, prop, value);
+      },
+    };
+    this.currentStepProxy = new Proxy(
+      {
+        value: this.currentStep,
+      },
+      handler
+    );
+    console.log(this.currentStepProxy);
   }
 
   setAnswer(answer) {
@@ -17,28 +69,28 @@ export class Questionnaire {
 
   async next() {
     return new Promise((resolve, reject) => {
-      if (this.currentStep >= this.questions.length) {
+      if (this.currentStepProxy.value >= this.questions.length) {
         reject();
         return;
       }
-      this.currentStep++;
-      resolve(this.currentStep);
+      this.currentStepProxy.value++;
+      resolve(this.currentStepProxy.value);
     });
   }
 
   async prev() {
     return new Promise((resolve, reject) => {
-      if (this.currentStep === 0) {
+      if (this.currentStepProxy.value === 0) {
         reject();
         return;
       }
-      this.currentStep--;
-      resolve(this.currentStep);
+      this.currentStepProxy.value--;
+      resolve(this.currentStepProxy.value);
     });
   }
 
   get current() {
-    return this.questions[this.currentStep];
+    return this.questions[this.currentStepProxy.value];
   }
 
   get currentAnswers() {
