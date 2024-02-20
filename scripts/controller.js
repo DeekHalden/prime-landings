@@ -2,6 +2,7 @@ export class Controller {
   constructor({ qs, strategyManager }) {
     this.prevButton = document.getElementById("prev");
     this.nextButton = document.getElementById("next");
+    this.footer = document.querySelector('.footer')
     this.qs = qs;
     this.strategyManager = strategyManager;
     this.initListeners();
@@ -58,6 +59,10 @@ export class Controller {
     const step = this.qs.current;
     const strategy = this.strategyManager.getStrategy(step.type);
     strategy.render(step, this);
+  }
+
+  hideFooter() {
+    this.footer.classList.add('hidden')
   }
 
   hideNext() {

@@ -19,11 +19,9 @@ export class Questionnaire {
     })
   }
 
-  getElementAbsoluteLeft(element, width) {
-    const elementLeft = element.getBoundingClientRect();
-    console.log(elementLeft);
+  hideProgress() {
+    this.progressElement.style.display = 'none'
   }
-
   getWidth(value) {
     const position = value + 1
     return `${((position) * 100) / this.questions.length}%`;
