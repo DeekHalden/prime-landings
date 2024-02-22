@@ -1,144 +1,46 @@
-import { HTML, Input, MultiSelect, SingleSelect } from "./handlers.js";
-import { qs } from "./qs.js";
-
-export class StrategyBuilder {
-  constructor(eventManager) {
-    this.eventManager = eventManager;
-  }
-  renderTitle(text) {
-    return `${text ? '<div class="step__title">' + text + "</div>" : ""}`;
-  }
-  renderSubtitle(description) {
-    return `${
-      description
-        ? '<div class="step__description">' + description + "</div>"
-        : ""
-    }`;
-  }
-}
-
-export class SingleStrategy extends StrategyBuilder {
-  constructor(eventManager) {
-    super(eventManager);
-    this.name = "single";
-  }
-  renderVariants(variantsToJson) {
-    return variantsToJson
-      .map((variant) => {
-        return `
+function b(){this.events={}}b.prototype.subscribe=function(i,t){this.events[i]||(this.events[i]=[]),this.events[i].push(t)};b.prototype.unsubscribe=function(i,t){var s=this.events[i];s&&(this.events[i]=s.filter(function(e){return t!==e}))};b.prototype.emit=function(i,t){var s=this.events[i];s&&s.forEach(function(e){e.call(null,t)})};function y(i){var t={setItem:function(e,n){},getItem:function(e){}},s=null;try{s=(i==="localStorage"?localStorage:sessionStorage)||t}catch(e){console.warn(e)}this.storage=s||t}y.prototype.getItem=function(i){return this.storage.getItem(i)};y.prototype.setItem=function(i,t){this.storage.setItem(i,t)};_w={localStorage:new y("localStorage"),sessionStorage:new y("sessionStorage"),eventEmitter:new b,_ai,_dt};(function(){var i={};i[_w._dt]={},_b&&(i[_w._dt]={banners:_b,interstitial:_i,rewarded:_r,rails:_ra,anchor:_s,isSRA:!0,_ao}),_w.pandasConfig={_si,_ai:_w._ai,EXPERIMENTS:i[_w.variant]||i[_w._dt],_vl,_vp},_w.errorArray=[];function t(e){var n="; "+document.cookie,o=n.split("; "+e+"=");if(o.length===2)return o.pop().split(";").shift()}function s(e,n,o){var H="";if(o){var h=new Date;h.setTime(h.getTime()+o*24*60*60*1e3),H="; expires="+h.toUTCString()}document.cookie=e+"="+(n||"")+H+"; path=/"}_w.getAdsVariation=function(){return t(_w._ai+":ab_test")||t("ab_test")||_w._dt},_w.variant=_w.getAdsVariation(),document.documentElement.classList.add("ab-test"),_w.variant&&document.documentElement.classList.add(_w.variant),_w._dt&&document.documentElement.classList.add(_w._dt),window.googletag=window.googletag||{cmd:[]},window.googlefc=window.googlefc||{},window.googlefc.callbackQueue=window.googlefc.callbackQueue||[],(!i[_w.variant]||!t(_w._ai+":ab_test")||!t("ab_test",_w._dt))&&(s(_w._ai+":ab_test",_w._dt),s("ab_test",_w._dt))})();(function(){var i={SamsungBrowser:"sam",Edg:"m",Chrome:"c",Safari:"s",Firefox:"f",FBAN:"fb",FBAV:"fb"},t=navigator.userAgent,s="-";for(var e in i)if(t.indexOf(e)!==-1){s=i[e];break}var n=[{code:"t",regex:/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i},{code:"m",regex:/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/}],o=[{code:"w",regex:/Windows/},{code:"a",regex:/Android/},{code:"c",regex:/CrOS/},{code:"l",regex:/(Linux|X11(?!.*CrOS))/},{code:"i",regex:/(iPhone|iPad|iPod)/},{code:"x",regex:/(Mac OS|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/}],H=n.find(function(M){return M.regex.test(t)}),h=H?H.code:"d",m=o.find(function(M){return M.regex.test(t)}),V=new URL(document.location).searchParams;try{var S=V.get("utm_device")}catch(M){console.warn(M)}_w.jscd={browser:s,os:m?m.code:"-",deviceType:S||h}})();(function(){var i=Object.assign({start:{},exit:{},first:{},view:{},click:{},touchstart:{},"page-dev":{},"page-load":{},"page-ready":{},"no-cookies":{},"30-sec":{},page:{}});function t(r){for(var a=r,c=[];a;){var u=a.nodeName.toLowerCase(),d=a.parentNode,l="";if(d){var p=Array.prototype.indexOf.call(d.children,a);l=u.concat(":nth-child("+(p+1)+")"),d.nodeName==="HTML"&&(d=null)}c.unshift(l||u),a=d}return c.join(">")}function s(r){var a="; "+document.cookie,c=a.split("; "+r+"=");if(c.length===2)return c.pop().split(";").shift()}function e(r){if(!r)return null;var a=Object.keys(r).map(function(c){return[c,r[c]]}).filter(function(c){return c[1]!==null}).reduce(function(c,u){return c[u[0]]=u[1],c},{});return Object.keys(a).length?a:null}function n(r){for(var a="",c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",u=c.length,d=0;d<r;)a+=c.charAt(Math.floor(Math.random()*u)),d+=1;return a}var o=n(8),H=n(4),h=location.pathname;function m(r){switch(r){case"facebook":return"f";case"google":return"g";case"unity":return"u";case"tiktok":return"t";default:return r}}function V(r){var a=r.API_URL||"/pan-das",c=r.a,u=r.vl,d=r.vp,l=V.getParamsToObject(document.URL),p=l.utm_campaign,g=l.utm_term,w=l.utm_source,v=l.fbclid,C=l.gclid,_=l.gbraid,Z=l.wbraid,q=l.ttclid,I=l.ab_test_cookie,k=_w.sessionStorage.getItem("PanDas:sessionID")||H,P=s("user_id")||_w.localStorage.getItem("PanDas:userID")||"_"+o,N=_w.localStorage.getItem("PanDas:startUrl")||h,x=+(_w.localStorage.getItem("PanDas:pageNumber")||0),T=_w.localStorage.getItem("PanDas:firstTime")||new Date().getTime(),A=+(_w.localStorage.getItem("PanDas:batch")||0);_w.sessionStorage.setItem("PanDas:sessionID",k),_w.localStorage.setItem("PanDas:userID",P),_w.localStorage.setItem("PanDas:pageNumber",x),_w.localStorage.setItem("PanDas:firstTime",T);var $=v&&"fbclid"||C&&"gclid"||Z&&"wbraid"||_&&"gbraid"||q&&"ttclid";this.API_URL=a,this.info={a:c,u:P,pn:x,s:k,ab:I||_w.variant,ac:p,aa:g,ag:m(w),aid:v||C||Z||_,an:$,pu:N,dc:_w.jscd?_w.jscd.deviceType:"u",dw:window.screen.width,dh:window.screen.height,cw:window.innerWidth,ch:window.innerHeight,tz:new Date().getTimezoneOffset(),b:A,ai:0,ar:0,vl:u,vp:d},this.stack=[],this.online=!0,this.bumpPageNumber(),this.initListeners(),this.customHash="",this.mapper=i,this.clickMapper=_w.pandasConfig.CUSTOM_CLICK_MAPPER||{},this.customParamEnricher=_w.pandasConfig.CUSTOM_PARAM_ENRICHER||function(){}}V.prototype.bumpPageNumber=function(){this.info.pn++,_w.localStorage.setItem("PanDas:pageNumber",this.info.pn)},V.getParamsToObject=function(r){var a=r.searchParams||new URL(r).searchParams;try{var c=a.get("utm_campaign"),u=a.get("utm_term"),d=a.get("utm_source"),l=a.get("fbclid"),p=a.get("gclid"),g=a.get("gbraid"),w=a.get("wbraid"),v=a.get("ttclid"),C=a.get("ab_test_cookie")}catch(_){console.warn(_)}return{utm_campaign:c,utm_term:u,utm_source:d,fbclid:l,gclid:p,gbraid:g,wbraid:w,ttclid:v,ab_test_cookie:C}},V.prototype.checkMapper=function(r){return i[r]?!0:null},V.prototype.track=function(r){var a=r.e,c=r.p,u=r.c,d=r.tc;if(this.checkMapper(a)){var l=e(c),p=l?encodeURIComponent(JSON.stringify(l)):null;this.info.b+=1,_w.localStorage.setItem("PanDas:batch",this.info.b);var g=Math.ceil(performance.now()),w=Object.assign({c:u,e:a,p,ts:g,os:_w.jscd?_w.jscd.os:"u",br:_w.jscd?_w.jscd.browser:"u"},this.info);d&&(w.tc=d);try{var v=new URLSearchParams(e(w)).toString()}catch(Z){console.warn(Z)}var C=this.API_URL+"?"+v;if(!navigator.onLine||!this.online){this.addRequestToStack(C);return}var _=this.send(C);return _}},V.prototype.send=function(r){if(window.location.href.includes(".local")){var a=[];a.push(JSON.parse('{"'+decodeURI((r.split("?")[1]||"").replace(/&/g,'","').replace(/=/g,'":"'))+'"}'));return}var c;if(navigator.sendBeacon)c=navigator.sendBeacon(r);else if("fetch"in window)c=fetch(r);else{var u=new XMLHttpRequest;u.onreadystatechange=function(){this.readyState==4&&this.status==200},u.open("GET",r,!0),u.send()}return c},V.prototype.addRequestToStack=function(r){this.stack.push(r)},V.prototype.initListeners=function(){var r=this;window.addEventListener("offline",function(){r.online=!1}),window.addEventListener("online",function(){r.online=!0,r.stack.forEach(function(a){r.send(a)}),r.stack=[]})},console.log(!0);try{_w.pandas=new V({API_URL:"https://fnwiki.com/pan-das",a:_w.pandasConfig._ai,vl:_w.pandasConfig._vl,vp:_w.pandasConfig._vp})}catch(r){console.warn(r),_w.pandas={track:function(){}}}window.addEventListener("load",function(){_w.pandas.track({e:"page-load",c:"tech"})}),window.addEventListener("DOMContentLoaded",function(){_w.pandas.track({e:"page-ready",c:"tech"})}),_w.pandas.track({e:"start",c:"tech"}),_w.localStorage.storage.clear||_w.pandas.track({e:"no-cookies",c:"tech"}),window.addEventListener("beforeunload",function(r){var a=r.target.activeElement.nodeName==="A";_w.pandas.track({e:"exit",c:"exit",p:{type:a?"link":"other"}})}),window.addEventListener("unload",function(){_w.pandas.track({e:"unload",c:"exit"})}),document.addEventListener("visibilitychange",function(){document.visibilityState==="hidden"&&_w.pandas.track({e:"hidden",c:"exit"})});var S=3e4;setTimeout(function(){_w.pandas.track({e:"30-sec",c:"engagement"})},S);var M=["click",window.matchMedia("(pointer: coarse)").matches&&"touchstart"].filter(Boolean);M.forEach(function(r){document.addEventListener(r,function(a){if(a.target.closest(".fc-consent-root")||a.target.classList.contains("fc-consent-root"))return!1;_w.pandas.customHash=n(4);var c=a.target,u=t(c);(c.nodeName==="A"||c.closest("a"))&&(u=null);var d=c.closest("a")||c,l=d.id.length?d.id:null,p=d.dataset.url&&d.dataset.url.length?d.dataset.url:null,g=d.className.length?d.className:null,w=p||g||l||u,v={e:r,c:"engagement",p:{e:w,l:c.nodeName==="A",id:_w.pandas.customHash,t:p&&"d"||g&&"c"||l&&"id"||u&&"s"}};l&&_w.pandas.clickMapper[l]&&Object.assign(v.p,_w.pandas.clickMapper[l]),Object.assign(v.p,_w.pandas.customParamEnricher(d)),_w.pandas.track(v)})})})();class D{constructor({qs:t,strategyManager:s}){this.prevButton=document.getElementById("prev"),this.nextButton=document.getElementById("next"),this.footer=document.querySelector(".footer"),this.qs=t,this.strategyManager=s,this.initListeners(),this.hidePrev(),this.initProxy(),this.render(this.qs.currentStep),this.showNext()}initProxy(){const t={currentStep:this.qs.currentStep},s={set:(e,n,o)=>(this.qs.currentAnswers?this.activateNext():this.blockNext(),o>=this.qs.questions.length-1?this.hideNext():o<=0?this.hidePrev():(this.showNext(),this.showPrev()),Reflect.set(e,n,o))};this.currentStepProxy=new Proxy(t,s)}initListeners(){this.prevButton.addEventListener("click",async()=>{try{const t=await this.qs.prev();await this.render(t)}catch{}}),this.nextButton.addEventListener("click",async()=>{try{const t=await this.qs.next();await this.render(t)}catch{}})}async render(t){this.currentStepProxy.currentStep=t;const s=this.qs.current;this.strategyManager.getStrategy(s.type).render(s,this)}hideFooter(){this.footer.classList.add("hidden")}hideNext(){this.nextButton.classList.add("hidden")}hidePrev(){this.prevButton.classList.add("hidden")}showNext(){this.nextButton.dataset.url=`next-${this.qs.current.id}`,this.nextButton.classList.remove("hidden")}showPrev(){this.prevButton.dataset.url=`prev-${this.qs.current.id}`,this.prevButton.classList.remove("hidden")}blockNext(){this.nextButton.classList.add("disabled")}activateNext(){this.nextButton.classList.remove("disabled")}}class B{constructor(t){this.currentStep=0,this.questions=t,this.answers={},this.button=document.getElementById("next"),this.progressElement=document.getElementById("progress"),this.initHandler(),this.progressElement.style.setProperty("--progress-fill-width",this.getWidth(0)),this.progressElements=[...this.progressElement.querySelectorAll("span")],this.progressElements.forEach((s,e)=>{e||s.style.setProperty("--progress-color","var(--progress-color-fill)")})}hideProgress(){this.progressElement.style.display="none"}getWidth(t){return`${(t+1)*100/this.questions.length}%`}initHandler(){const t={set:(s,e,n)=>{const o=this.getWidth(n);return this.progressElement.style.setProperty("--progress-fill-width",o),this.progressElements.forEach((H,h)=>{h<=n?H.style.setProperty("--progress-color","rgba(41.86, 127.12, 255, 1)"):H.style.setProperty("--progress-color","rgba(223, 226, 236, 1)")}),Reflect.set(s,e,n)}};this.currentStepProxy=new Proxy({value:this.currentStep},t),console.log(this.currentStepProxy)}setAnswer(t){this.answers[this.current.id]=t,this.answers[this.current.id]&&this.answers[this.current.id].length?this.button.classList.remove("disabled"):this.button.classList.add("disabled")}async next(){return new Promise((t,s)=>{if(this.currentStepProxy.value>=this.questions.length){s();return}this.currentStepProxy.value++,t(this.currentStepProxy.value)})}async prev(){return new Promise((t,s)=>{if(this.currentStepProxy.value===0){s();return}this.currentStepProxy.value--,t(this.currentStepProxy.value)})}get current(){return this.questions[this.currentStepProxy.value]}get currentAnswers(){return this.answers[this.current?.id]}}const f=new B(data);class E{constructor({qs:t}){this.className="single",this.qs=t}initListeners(){const t=this.qs.currentAnswers,s=[...document.getElementsByClassName(this.className)];s.forEach(e=>{e.dataset.id===t&&e.classList.add("active"),e.addEventListener("click",()=>{s.forEach(n=>n.classList.remove("active")),e.classList.add("active"),this.qs.setAnswer(e.dataset.id)})})}}class O{constructor({qs:t}){this.className="multi",this.qs=t}initListeners(){const t=this.qs.currentAnswers;console.log(this.qs.current),[...document.getElementsByClassName(this.className)].forEach(e=>{t&&t.includes(e.dataset.id)&&e.classList.add("active"),e.addEventListener("click",()=>{e.classList.toggle("active");const n=[...document.getElementsByClassName("active")].map(o=>o.dataset.id);this.qs.setAnswer(n)})})}}class R{constructor({qs:t}){this.className="input-wrapper__input",this.qs=t}initListeners(t){const s=this.qs.currentAnswers,e=document.querySelector(`.${this.className}`);e.value=s??"",e.addEventListener("input",n=>{this.qs.setAnswer(n.target.value)}),e.addEventListener("keyup",async n=>{if(n.code!=="Enter")return;const o=await this.qs.next();await t.render(o),t.showNext(o)})}}class F{constructor({qs:t}){this.className="",this.qs=t}initListeners(t){const s=document.querySelector("footer a");t.hidePrev(),t.hideNext(),s.addEventListener("click",async e=>{const n=await this.qs.next();await t.render(n),t.showNext(n)})}}class L{constructor(t){this.eventManager=t}renderTitle(t){return`${t?'<div class="step__title">'+t+"</div>":""}`}renderSubtitle(t){return`${t?'<div class="step__description">'+t+"</div>":""}`}}class U extends L{constructor(t){super(t),this.name="single"}renderVariants(t,s){return t.map(e=>`
             <button
                 class="button select single"
-                id="variant-${variant.id}"
-                data-id=${variant.id}
+                id="variant-${e.id}"
+                data-id=${e.id}
+                data-url="single-${s}-${e.id}"
             >
-            ${
-              variant.image
-                ? '<div class="button__wrapper"><img class="button__img" src=' +
-                  variant.image +
-                  "/></div>"
-                : ""
-            }
-            <span>${variant.title}</span>
+            ${e.image?'<div class="button__wrapper"><img class="button__img" src='+e.image+"/></div>":""}
+            <span>${e.title}</span>
             </button>
-            `;
-      })
-      .join("");
-  }
-  render(data) {
-    const context = document.querySelector(".step");
-    const { question_text, variants, description } = data;
-    const variantsToJson = JSON.parse(variants);
-
-    context.innerHTML = `
-        ${this.renderTitle(question_text)}
-        ${this.renderSubtitle(description)}
+            `).join("")}render(t){const s=document.querySelector(".step"),{question_text:e,variants:n,description:o,id:H}=t,h=JSON.parse(n);s.innerHTML=`
+        ${this.renderTitle(e)}
+        ${this.renderSubtitle(o)}
         <div class="actions actions--vertical">
-            ${this.renderVariants(variantsToJson)}
+            ${this.renderVariants(h,H)}
         </div>
-    `;
-
-    this.eventManager.initListeners();
-  }
-}
-
-export class MultiStrategy extends StrategyBuilder {
-  constructor(eventManager) {
-    super(eventManager);
-    this.name = "multi";
-  }
-  renderVariants(variantsToJson) {
-    return variantsToJson
-      .map((variant) => {
-        return `
+    `,this.eventManager.initListeners()}}class j extends L{constructor(t){super(t),this.name="multi"}renderVariants(t,s){return t.map(e=>`
           <button
-              class="button select multi ${variant.image ? "imaged" : ""}"
-              id="variant-${variant.id}"
-              data-id=${variant.id}
+              class="button select multi ${e.image?"imaged":""}"
+              id="variant-${e.id}"
+              data-id=${e.id}
+              data-url="multi-${s}-${e.id}"
           >
-          ${
-            variant.image
-              ? '<div class="button__wrapper"><img class="button__img" src=' +
-                variant.image +
-                "/></div>"
-              : ""
-          }
-          <span>${variant.title}</span>
+          ${e.image?'<div class="button__wrapper"><img class="button__img" src='+e.image+"/></div>":""}
+          <span>${e.title}</span>
           </button>
-          `;
-      })
-      .join("");
-  }
-  render(data) {
-    const context = document.querySelector(".step");
-    const { question_text, variants, description } = data;
-    const variantsToJson = JSON.parse(variants);
-
-    context.innerHTML = `
-        ${this.renderTitle(question_text)}
-        ${this.renderSubtitle(description)}
+          `).join("")}render(t){const s=document.querySelector(".step"),{question_text:e,variants:n,description:o,id:H}=t,h=JSON.parse(n);s.innerHTML=`
+        ${this.renderTitle(e)}
+        ${this.renderSubtitle(o)}
         <div class="actions actions--vertical">
-            ${this.renderVariants(variantsToJson)}
+            ${this.renderVariants(h,H)}
         </div>
-    `;
-
-    this.eventManager.initListeners();
-  }
-}
-
-export class HTMLStrategy {
-  constructor(eventManager) {
-    this.name = "html";
-    this.eventManager = eventManager;
-  }
-  render(data, context) {
-    const renderContext = document.querySelector(".step");
-    const { variants } = data;
-
-    const contentToJson = decodeURIComponent(JSON.parse(variants).content);
-    renderContext.innerHTML = `<div class="html">${contentToJson}</div>`;
-    this.eventManager.initListeners(context);
-  }
-}
-
-export class FinalScreenStrategy {
-  constructor() {
-    this.name = "final-screen";
-  }
-
-  renderVariants(reviews) {
-    return reviews.map(
-      (review) =>
-        `<div class="review">
+    `,this.eventManager.initListeners()}}class J{constructor(t){this.name="html",this.eventManager=t}render(t,s){const e=document.querySelector(".step"),{variants:n}=t,o=decodeURIComponent(JSON.parse(n).content);e.innerHTML=`<div class="html">${o}</div>`,this.eventManager.initListeners(s)}}class W{constructor(){this.name="final-screen"}renderVariants(t){return t.map(s=>`<div class="review">
       <div class="review__image-wrapper">
         <img
         class="review__image"
-        src=${review.image}
+        src=${s.image}
       />
       </div>
       
       <div class="review__wrapper">
         <div class="review__content">
-          <div class="review__title">${review.name}</div>
+          <div class="review__title">${s.name}</div>
           <div class="review__rating">
             <div class="review__rating-item">★</div>
             <div class="review__rating-item">★</div>
@@ -148,26 +50,14 @@ export class FinalScreenStrategy {
           </div>
         </div>
         <div class="review__desc">
-          ${review.content}
+          ${s.content}
         </div>
       </div>
     </div>
-    `
-    ).join('');
-  }
-  render(data, context) {
-    console.log("render");
-    const renderContext = document.querySelector(".step");
-    const { variants } = data;
-    const variantsToJson = JSON.parse(variants);
-    const reviews = variantsToJson.reviews;
-    const upperContent = decodeURIComponent(variantsToJson.upperContent);
-    context.qs.hideProgress();
-    context.hideFooter();
-    renderContext.innerHTML = `
+    `).join("")}render(t,s){const e=document.querySelector(".step"),{variants:n}=t,o=JSON.parse(n),H=o.reviews,h=decodeURIComponent(o.upperContent);s.qs.hideProgress(),s.hideFooter(),e.innerHTML=`
 <div class="html html--final">
   <section>
-    <div>${upperContent}</div>
+    <div>${h}</div>
     <div class="graph">
     <svg width="355" height="208" viewBox="0 0 355 208" fill="none" xmlns="http://www.w3.org/2000/svg">
     <mask id="path-1-inside-1_2184_2168" fill="white">
@@ -206,18 +96,18 @@ export class FinalScreenStrategy {
 </p>
     </div>
     <div class="actions">
-      <a>Instagram</a> 
-      <a>Facebook</a>
+      <a data-url="final-t-inst">Instagram</a> 
+      <a data-url="final-t-fb">Facebook</a>
     </div>
   </section>
   <section>
     <h2>Customer reviews</h2>
     <div class="reviews">
-      ${this.renderVariants(reviews)}
+      ${this.renderVariants(H)}
     </div>
     <div class="actions">
-      <a>Instagram</a> 
-      <a>Facebook</a>
+      <a data-url="final-b-inst">Instagram</a> 
+      <a data-url="final-b-fb">Facebook</a>
     </div>
   </section>
   <div class="gradient">
@@ -237,112 +127,40 @@ export class FinalScreenStrategy {
       <li>Your subscription will be bound by our <a>Terms</a> and <a>Privacy Policy</a></li>
     </ul>  
   </div>
-</div>`;
-  }
-}
-
-export class InputStrategy extends StrategyBuilder {
-  constructor(eventManager) {
-    super(eventManager);
-    this.name = "input";
-  }
-  render(data, context) {
-    const renderContext = document.querySelector(".step");
-    const { question_text, description } = data;
-
-    renderContext.innerHTML = `
-        ${this.renderTitle(question_text)} 
-        ${this.renderSubtitle(description)}
+</div>`}}class Y extends L{constructor(t){super(t),this.name="input"}render(t,s){const e=document.querySelector(".step"),{question_text:n,description:o,variants:H,id:h}=t,m=JSON.parse(H);e.innerHTML=`
+        ${this.renderTitle(n)} 
+        ${this.renderSubtitle(o)}
         <div class="actions actions--vertical">
           <div class="input-wrapper">
-          <label>Your height</label>
+          <label>${m.title}</label>
             
           
           <input
           autocomplete="off"
           class="input-wrapper__input"
           required
+          data-url="input-${h}"
           />
-          <div class="input-wrapper__note">cm</div>
+          <div class="input-wrapper__note">${m.note}</div>
           </div>
         </div>
-    `;
-    this.eventManager.initListeners(context);
-  }
-}
-
-export class GradeStrategy extends StrategyBuilder {
-  constructor(eventManager) {
-    super(eventManager);
-    this.name = "grade";
-  }
-  renderVariants(variantsToJson) {
-    return variantsToJson
-      .map((variant) => {
-        return `
+    `,this.eventManager.initListeners(s)}}class G extends L{constructor(t){super(t),this.name="grade"}renderVariants(t,s){return t.map(e=>`
           <button
               class="button select single vertical"
-              id="variant-${variant.id}"
-              data-id=${variant.id}
+              id="variant-${e.id}"
+              data-id=${e.id}
+              data-url="grade-${s}-${e.id}"
           >
-          <span>${variant.title}</span>
+          <span>${e.title}</span>
           </button>
-          `;
-      })
-      .join("");
-  }
-  render(data) {
-    const context = document.querySelector(".step");
-    const { description, question_text, variants } = data;
-    const variantsToJson = JSON.parse(variants);
-    context.innerHTML = `
-        ${this.renderTitle(question_text)} 
-        ${this.renderSubtitle(description)}
+          `).join("")}render(t){const s=document.querySelector(".step"),{description:e,question_text:n,variants:o,id:H}=t,h=JSON.parse(o);s.innerHTML=`
+        ${this.renderTitle(n)} 
+        ${this.renderSubtitle(e)}
         <div class="actions actions--horizontal">
-          ${this.renderVariants(variantsToJson)}
+          ${this.renderVariants(h,H)}
           <div class="step__details">
             <div>Not at all</div>
             <div>Totally</div>
           </div>
         </div>
-    `;
-    this.eventManager.initListeners();
-  }
-}
-
-export class StrategyManager {
-  constructor() {
-    this.strategies = [
-      new SingleStrategy(
-        new SingleSelect({
-          qs: qs,
-        })
-      ),
-      new MultiStrategy(
-        new MultiSelect({
-          qs: qs,
-        })
-      ),
-      new HTMLStrategy(
-        new HTML({
-          qs: qs,
-        })
-      ),
-      new InputStrategy(
-        new Input({
-          qs: qs,
-        })
-      ),
-      new GradeStrategy(
-        new SingleSelect({
-          qs: qs,
-        })
-      ),
-      new FinalScreenStrategy({}),
-    ];
-  }
-
-  getStrategy(name) {
-    return this.strategies.find((str) => str.name === name);
-  }
-}
+    `,this.eventManager.initListeners()}}class z{constructor(){this.strategies=[new U(new E({qs:f})),new j(new O({qs:f})),new J(new F({qs:f})),new Y(new R({qs:f})),new G(new E({qs:f})),new W({})]}getStrategy(t){return this.strategies.find(s=>s.name===t)}}new D({qs:f,strategyManager:new z});
